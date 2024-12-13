@@ -128,6 +128,15 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 - Visit [http://localhost:8000/docs](http://localhost:8000/docs) to access the Swagger UI for testing.
 
+```json
+{
+    "sepal_length": 5.1,
+    "sepal_width": 3.5,
+    "petal_length": 1.4,
+    "petal_width": 0.2
+}
+
+
 ### **4. Containerize with Docker**
 
 1. **Create a `Dockerfile`:**

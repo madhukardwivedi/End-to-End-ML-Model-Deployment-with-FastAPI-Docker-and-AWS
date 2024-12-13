@@ -46,4 +46,39 @@ pip install fastapi uvicorn scikit-learn joblib
 git clone https://github.com/your-repository/ml-fastapi-docker.git
 cd ml-fastapi-docker
 ```
+# Project Directory Structure
+
 ml-fastapi-docker/ ├── app/ │ ├── init.py # Initialization file for the app module │ ├── main.py # FastAPI application code │ ├── model.pkl # Trained machine learning model file ├── create_model.py # Script to train and save the ML model ├── Dockerfile # Dockerfile to containerize the application ├── requirements.txt # Python dependencies for the project ├── .dockerignore # Files and folders to ignore during Docker build └── README.md # Detailed instructions and documentation
+
+
+## **Step-by-Step Guide**
+
+### **1. Train and Save the Model**
+1. **Create the ML Model**:
+   - Open the file `create_model.py` and add:
+     ```python
+     import joblib
+     from sklearn.datasets import load_iris
+     from sklearn.ensemble import RandomForestClassifier
+     from sklearn.model_selection import train_test_split
+
+     # Load dataset
+     data = load_iris()
+     X, y = data.data, data.target
+
+     # Split dataset
+     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+     # Train a RandomForest model
+     model = RandomForestClassifier()
+     model.fit(X_train, y_train)
+
+     # Save the model
+     joblib.dump(model, "app/model.pkl")
+     print("Model saved as app/model.pkl")
+     ```
+
+2. **Run the Script**:
+   ```bash
+   python create_model.py
+    ```

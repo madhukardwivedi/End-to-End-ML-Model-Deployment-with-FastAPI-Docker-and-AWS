@@ -236,3 +236,9 @@ Use AWS Elastic Beanstalk, ECS, or App Runner to deploy your container. For Elas
    -d '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}'
 
    ```
+
+### **8. Future Improvements**
+
+- Add authentication for the API.
+- Implement CI/CD pipelines using AWS CodePipeline or GitHub Actions.
+- Use HTTPS with AWS Certificate Manager.

@@ -48,8 +48,16 @@ cd ml-fastapi-docker
 ```
 # Project Directory Structure
 
-ml-fastapi-docker/ ├── app/ │ ├── init.py # Initialization file for the app module │ ├── main.py # FastAPI application code │ ├── model.pkl # Trained machine learning model file ├── create_model.py # Script to train and save the ML model ├── Dockerfile # Dockerfile to containerize the application ├── requirements.txt # Python dependencies for the project ├── .dockerignore # Files and folders to ignore during Docker build └── README.md # Detailed instructions and documentation
-
+ml-fastapi-docker/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── model.pkl
+├── create_model.py
+├── Dockerfile
+├── requirements.txt
+├── .dockerignore
+└── README.md
 
 ## **Step-by-Step Guide**
 

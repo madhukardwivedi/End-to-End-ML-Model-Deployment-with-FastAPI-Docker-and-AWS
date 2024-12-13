@@ -118,4 +118,10 @@ ml-fastapi-docker/ ├── app/ │ ├── init.py # Initialization file fo
        ]]
        prediction = model.predict(features)
        return {"prediction": int(prediction[0])}
+   ```
+### **3. Test the Application Locally**
+
+Run the application locally:
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```

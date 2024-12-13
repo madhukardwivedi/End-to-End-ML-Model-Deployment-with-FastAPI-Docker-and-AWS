@@ -48,7 +48,8 @@ cd ml-fastapi-docker
 ```
 # Project Directory Structure
 
-![Project Structure](structure.png)
+<img src="structure.png" alt="Project Structure" width="100" height="200">
+
 
 ## **Step-by-Step Guide**
 

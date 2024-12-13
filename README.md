@@ -225,3 +225,14 @@ Use AWS Elastic Beanstalk, ECS, or App Runner to deploy your container. For Elas
    eb create ml-fastapi-env
     ```
    
+### **7. Test the Deployed Application**
+
+1. Access the public IP or URL of your deployed service.
+
+2. Test the `/predict/` endpoint using `curl`:
+   ```bash
+   curl -X POST "<PUBLIC_URL>/predict/" \
+   -H "Content-Type: application/json" \
+   -d '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}'
+
+   ```

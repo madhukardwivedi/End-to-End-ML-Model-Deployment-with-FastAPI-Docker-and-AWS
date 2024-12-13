@@ -48,16 +48,7 @@ cd ml-fastapi-docker
 ```
 # Project Directory Structure
 
-ml-fastapi-docker/
-├── app/
-│   ├── __init__.py
-│   ├── main.py
-│   ├── model.pkl
-├── create_model.py
-├── Dockerfile
-├── requirements.txt
-├── .dockerignore
-└── README.md
+![Project Structure](structure.png)
 
 ## **Step-by-Step Guide**
 

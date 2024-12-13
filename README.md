@@ -125,3 +125,103 @@ Run the application locally:
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
+
+- Visit [http://localhost:8000/docs](http://localhost:8000/docs) to access the Swagger UI for testing.
+
+### **4. Containerize with Docker**
+
+1. **Create a `Dockerfile`:**
+
+   ```dockerfile
+   FROM python:3.9-slim
+
+   WORKDIR /app
+
+   COPY requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+
+   COPY . .
+
+   EXPOSE 8000
+
+   CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+   ```
+
+2. **Add a `requirements.txt`:**
+
+   ```bash
+   fastapi
+   uvicorn
+   scikit-learn
+   joblib
+    ```
+
+3. **Build and Run the Docker Image:**
+
+   - **Build the image**:
+     ```bash
+     docker build -t ml-fastapi-app .
+     ```
+
+   - **Run the container**:
+     ```bash
+     docker run -p 8000:8000 ml-fastapi-app
+     ```
+### **5. Push Docker Image to AWS ECR**
+
+1. **Authenticate Docker with AWS:**
+
+   ```bash
+   aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+    ```
+
+2. **Create an ECR Repository:**
+
+   ```bash
+   aws ecr create-repository --repository-name ml-fastapi-app
+    ```
+3. **Tag and Push the Docker Image:**
+
+   - **Tag the image**:
+     ```bash
+     docker tag ml-fastapi-app:latest <account-id>.dkr.ecr.<region>.amazonaws.com/ml-fastapi-app:latest
+     ```
+
+   - **Push the image**:
+     ```bash
+     docker push <account-id>.dkr.ecr.<region>.amazonaws.com/ml-fastapi-app:latest
+     ```
+### **6. Deploy the Application**
+
+Use AWS Elastic Beanstalk, ECS, or App Runner to deploy your container. For Elastic Beanstalk:
+
+1. **Create `Dockerrun.aws.json`:**
+
+   ```json
+   {
+     "AWSEBDockerrunVersion": "1",
+     "Image": {
+       "Name": "<account-id>.dkr.ecr.<region>.amazonaws.com/ml-fastapi-app:latest",
+       "Update": "true"
+     },
+     "Ports": [
+       {
+         "ContainerPort": 8000
+       }
+     ]
+   }
+     ```
+
+2. **Initialize Elastic Beanstalk:**
+
+   ```bash
+   eb init
+    ```
+
+3. **Deploy the Application:**
+
+   ```bash
+   eb create ml-fastapi-env
+    ```
+   
